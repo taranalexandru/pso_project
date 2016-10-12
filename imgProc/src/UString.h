@@ -19,6 +19,8 @@ public:
 	int getLength() const { return m_length; }
 	unsigned char* getBuffer() const { return m_buffer; }
 	void setBuffer(unsigned char* buffer, int length);
+	void setLength(int length);
+	void setBuffer(unsigned char* buffer);
 
 	// Operators Overloading
 	UString& operator=(const UString& ustring);

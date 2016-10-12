@@ -56,7 +56,6 @@ void UString::setBuffer(unsigned char* buffer, int length)
 UString& UString::operator=(const UString& ustring)
 {
 	int plen = ustring.getLength();
-	unsigned char* p = ustring.getBuffer();
 	
 	if(plen != m_length)
 	{
@@ -88,4 +87,16 @@ bool UString::operator==(const UString& ustring)
 			return false;
 	}
 	return true;
+}
+
+void UString :: setLength(int length)
+{
+	m_length = length;
+	//m_buffer = new unsigned char[length];
+	//memset(&m_buffer, 0, length);
+}
+
+void UString :: setBuffer(unsigned char* buffer)
+{
+	m_buffer = buffer;
 }

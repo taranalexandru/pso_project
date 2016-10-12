@@ -14,6 +14,7 @@
 #include <sys/time.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
+#include "UString.h"
 
 #include <linux/videodev2.h>
 
@@ -23,19 +24,23 @@
 class WebCam{
 private:
 	char* devName;
-	//buffer clasa Stefan
-	unsigned int nBuffers;
+	UString *buffers;
+	int nBuffers;
 	int fd;
+	int width, height;
 
 	void ErrnoExit(const char *s);
 	int xioctl(int desc, int req, void* arg);
 	void InitDevice();
 	void OpenDevice();
-	
+	void StartCapturing();
+	void StopCapturing();
+
 public:
-	WebCam(const char* dev);
+	WebCam(const char* dev, int width, int height);
 	~WebCam();
 
+	UString* GetFrame();
 };
 
 
