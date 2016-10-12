@@ -21,7 +21,6 @@ public:
 	void setBuffer(unsigned char* buffer, int length);
 
 	// Operators Overloading
-	//UString& operator+(const UString&);
 	UString& operator=(const UString& ustring);
 	bool operator==(const UString& ustring);
 

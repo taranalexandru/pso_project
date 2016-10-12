@@ -52,16 +52,6 @@ void UString::setBuffer(unsigned char* buffer, int length)
 	}
 }
 
-UString& UString::operator+(const UString& ustring)
-{
-	int plen = ustring.getLength();
-	unsigned char* p = ustring.getBuffer();
-	
-	if(plen == 0)
-		return *this;
-
-}
-
 
 UString& UString::operator=(const UString& ustring)
 {

@@ -29,6 +29,9 @@ private:
 
 	void ErrnoExit(const char *s);
 	int xioctl(int desc, int req, void* arg);
+	void InitDevice();
+	void OpenDevice();
+	
 public:
 	WebCam(const char* dev);
 	~WebCam();
