@@ -1,11 +1,10 @@
 #include "FrameConverter.h"
 #include "WebCam.h"
-#include "ImageProcCV.h"
+//#include "ImageProcCV.h"
+#include "FrameCompresser.h"
 
 int main()
 {
-<<<<<<< HEAD
-
 	WebCam *Camera = new WebCam("/dev/video0", 640, 480);
 	UString* frame = Camera->GetFrame();
 	printf("\n%d\n",frame->getLength());
@@ -13,12 +12,17 @@ int main()
 	fwrite(frame->getBuffer(), frame->getLength(), 1, f);
 	FrameConverter* conv = new FrameConverter();
 	conv->StartConversion((char*)"img01.rgb",*frame);
-	delete conv;
-	fclose(f);
-=======
-//	WebCam *Camera = new WebCam("/dev/video0", 640, 480);
-	ImageProcCV cv;
-	cv.Display();
->>>>>>> abdcf540ea40a2c9142088b9dd99f82fe672c2d9
+
+	FrameCompresser* comp = new FrameCompresser((char*)"img01.rgb");
+	comp->Compress((char*)"img01.jpg");
+	comp->Decompress((char*)"img01.jpg",(char*)"img01x.rgb");
+
+	//delete conv;
+	//fclose(f);
+
+	//WebCam *Camera = new WebCam("/dev/video0", 640, 480);
+	//ImageProcCV cv;
+	//cv.Display();
+
 	return 0;
 }
