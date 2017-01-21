@@ -66,7 +66,7 @@ void FrameCompresser::Compress(char* dst)
 	int row_stride = WIDTH * 3;
 	while(cinfo.next_scanline < cinfo.image_height)
 	{
-		printf("\nWriting...%c",raw_image[cinfo.next_scanline * row_stride]);
+		//printf("\nWriting...%c",raw_image[cinfo.next_scanline * row_stride]);
 		row_pointer[0] = & raw_image[cinfo.next_scanline * row_stride];
 		jpeg_write_scanlines(&cinfo,row_pointer,1);
 	}
@@ -74,6 +74,7 @@ void FrameCompresser::Compress(char* dst)
 	jpeg_finish_compress(&cinfo);
 	fclose(outfile);
 	jpeg_destroy_compress(&cinfo);
+	//printf("\n1st break");
 }
 
 void FrameCompresser::Decompress(char* src, char* dst)
@@ -86,7 +87,7 @@ void FrameCompresser::Decompress(char* src, char* dst)
 	jpeg_create_decompress(&cinfo);
 	// Specifying the source file.
 	FILE* infile = fopen(src,"rb");
-	FILE* outfile = fopen(src,"wb");
+	FILE* outfile = fopen(dst,"wb");
 	if(infile == NULL)
 	{
 		fprintf(stderr,"can't open %s\n",src);
@@ -108,6 +109,7 @@ void FrameCompresser::Decompress(char* src, char* dst)
 	while(cinfo.output_scanline < cinfo.image_height)
 	{
 		jpeg_read_scanlines(&cinfo, row_pointer, 1);
+		//printf("\n2nd break");
 		for(int i=0; i < cinfo.image_width * cinfo.num_components; i++)
 		{
 			raw_image[location++] = row_pointer[0][i];
@@ -122,4 +124,5 @@ void FrameCompresser::Decompress(char* src, char* dst)
 	fclose(infile);
 	fclose(outfile);
 	jpeg_destroy_decompress(&cinfo);
+	//printf("\n3rd break");
 }
