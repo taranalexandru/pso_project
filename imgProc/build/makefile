@@ -54,6 +54,7 @@ LIBS += opencv_ml
 LIBS += opencv_imgproc
 LIBS += opencv_flann
 LIBS += opencv_core
+LIBS += opencv_face
 LIBS += opencv_objdetect
 LIBS += opencv_calib3d
 LIBS += opencv_videoio
@@ -65,7 +66,8 @@ LIBS += opencv_videoio
 SOURCE_FILES += main.cpp
 SOURCE_FILES += UString.cpp
 SOURCE_FILES += WebCam.cpp
-SOURCE_FILES += ImageProcCV.cpp
+SOURCE_FILES += ImageWorker.cpp
+SOURCE_FILES += FaceDetector.cpp
 
 #************
 # Conversions
